@@ -1,0 +1,13 @@
+.top-header-main-container {
+    height: 75px;
+    width: auto;
+    border-bottom: 1px solid #F8F8FA;
+    display: flex;
+    align-items: center;
+    .header-text {
+        font-family: "Poppins";
+        font-size: 30px;
+        font-weight: 700;
+        color: #3D3D3D;
+    }
+}
