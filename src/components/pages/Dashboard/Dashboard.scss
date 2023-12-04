@@ -1,0 +1,55 @@
+.dashboard-main-container {
+    width: auto;
+    margin-left: 283px;
+    padding-left: 26px;
+    padding-right: 26px;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+    .chart-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        canvas {
+            height: 400px !important;
+        }
+    }
+    .stats-main {
+        display: flex;
+        justify-content: space-between;
+        gap:16px;
+        flex-wrap: wrap;
+        .single {
+            background: white;
+            border-radius: 8px;
+            height: fit-content;
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 4px;
+            padding: 12px;
+            .head {
+                font-size: 16px;
+                font-weight: 400;
+                color: #3D3D3D;
+                word-wrap: break-word;
+            }
+            .count {
+                font-size: 44px;
+                font-weight: 700;
+                color: #3D3D3D;
+            }
+            .view {
+                font-size: 13px;
+                font-weight: 400;
+                text-decoration-line: underline;
+                color: #3D3D3D;
+                cursor: pointer;
+            }
+        }
+    }
+}

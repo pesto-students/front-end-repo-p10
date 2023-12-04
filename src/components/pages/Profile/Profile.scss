@@ -1,0 +1,92 @@
+.profile-main-container {
+    width: auto;
+    margin-left: 283px;
+    padding-left: 26px;
+    padding-right: 26px;
+    .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+    .container {
+        background: white;
+        height: fit-content;
+        border-radius: 12px;
+        display: flex;
+        gap:16px;
+        justify-content: space-around;
+        padding: 48px 16px;
+        .left {
+            height: 226px;
+            width: 226px;
+            border-radius: 100%;
+            object-fit: contain;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            .form-input {
+                display: flex;
+                flex-direction: column;
+                gap:4px;
+                .label {
+                    font-family: "Poppins";
+                    font-size: 15px;
+                    font-weight: 500;
+                    color: #000;
+                }
+                .input {
+                    border: 1px solid #C0BDBD;
+                    border-radius: 8px;
+                    background: white;
+                    padding: 4px 8px;
+                    font-family: 'Poppins';
+                    font-weight: 400;
+                    color: #3D3D3D;
+                    font-size: 14px;
+                    min-width: 400px;
+                    // max-width: 100%;
+                    width: 100%;
+                }
+                .input::after,.input::before {
+                    border: none;
+                    border-bottom: none;
+                }
+            }
+            .icon {
+                cursor: pointer;
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                border: 1px solid rgb(227, 226, 226);
+                svg {
+                    color: #261958;
+                }
+            }
+        }
+    }
+    .save-btn {
+        width: 150px;
+        background: #261958;
+        font-family: "Poppins";
+        font-size: 16px;
+        font-weight: 500;
+        color: #FFF;
+        text-align: center;
+        margin-top: 32px;
+    }
+    .save-btn:hover {
+        background: #261958;
+        color: #FFF;
+    }
+}
