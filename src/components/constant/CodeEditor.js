@@ -1,0 +1,6 @@
+export const JOB_STATUS = {
+    INITIAL: "INITIAL",
+    PENDING: "PENDING",
+    SUCCESS: "SUCCESS",
+    ERROR: "ERROR",
+}

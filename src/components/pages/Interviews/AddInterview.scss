@@ -1,0 +1,69 @@
+.add-interview-main-container {
+  width: auto;
+  margin-left: 283px;
+  padding-left: 26px;
+  padding-right: 26px;
+  padding-bottom: 60px;
+  font-family: "Poppins";
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding-top: 12px;
+    padding-bottom: 32px;
+  }
+  .form-container {
+    padding: 4px 24px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+  }
+  .heading {
+    font-weight: 600;
+    color: #3D3D3D;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .form-input {
+        display: flex;
+        flex-direction: column;
+        gap:4px;
+      .label {
+        font-size: 14px;
+        font-weight: 400;
+        color: #3D3D3D;
+      }
+      .input {
+        width: 100%;
+        height: 34px;
+        border-radius: 4px;
+        border: 1px solid rgb(192, 191, 191);
+        padding-left: 8px;
+        padding-right: 8px;
+        font-family: "Poppins";
+      }
+      .input::placeholder {
+        font-family: "Poppins";
+      }
+    .date-picker {
+
+    }
+  }
+  .submit-btn,.submit-btn:hover {
+        border-radius: 8px;
+        height: 40px;
+        padding: 4px 22px;
+        color: white;
+        background: #261958;
+        display: flex;
+        align-items: center;
+        font-family: 'Poppins';
+        font-weight: 400;
+        text-transform: capitalize;
+  }
+  
+}
