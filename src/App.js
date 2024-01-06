@@ -1,4 +1,4 @@
-import { MuiThemeProvider, createTheme } from '@material-ui/core';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css';
 import RouteContainer from './routes';
 import { ToastContainer } from 'react-toastify';
@@ -10,6 +10,9 @@ import { BrowserRouter } from 'react-router-dom';
 const theme = createTheme({
   typography: {
    "fontFamily": `Poppins`,
+  },
+  box: {
+    "fontFamily": `Poppins`,
   }
 });
 
@@ -34,14 +37,14 @@ useEffect(()=>{
 },[])
   return (
     <div className="App">
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <BrowserRouter>
           <RouteContainer 
             isAuthenticated={isAuthenticated} 
           />
         </BrowserRouter>
       <ToastContainer />
-      </MuiThemeProvider>
+      </ThemeProvider>
     </div>
   );
 }

@@ -65,5 +65,44 @@
         font-weight: 400;
         text-transform: capitalize;
   }
+  .ques-bank-btn {
+    width: fit-content;
+    border-radius: 8px;
+    height: 40px;
+    padding: 4px 22px;
+    color: #261958;
+    background: #ffffff;
+    border: 1px solid #261958;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins';
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .select {
+    margin-top: 4px;
+    width: 130px;
+  }
+  .question-container{
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    margin-bottom: 8px;
+    .question-box {
+      display: flex;
+      gap:8px;
+      background: #2619581a;
+      color: #261958;
+      padding: 4px 8px;
+      border-radius: 4px;
+     
+      .question-title {
+        font-family: 'Poppins';
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+  }
   
 }

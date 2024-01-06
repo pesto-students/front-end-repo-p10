@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import "./Dashboard.scss";
 import TopHeader from "../../common/TopHeader";
 import { HEADERS } from "../../constant/Header";
@@ -32,7 +32,7 @@ let tempStatsData = [
     },
     {
         label: "Cancelled",
-        count: "0%",
+        count: "0",
         route: "",
         key: CANCELLED,
     },
@@ -43,7 +43,7 @@ const chartData = {
     datasets: [
       {
         label: "Interviews",
-        data: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         fill: false,
         borderColor: "#261958",
       },
@@ -75,7 +75,7 @@ const Dashboard = () => {
     const {DASHBOARD} = HEADERS;
     const [interviewStats, setInterviewStats] = useState();
     const [statsData,setStatsData] = useState(tempStatsData); 
-    const [graphData,setGraphData] = useState([]);
+    const [graphData,setGraphData] = useState(chartData);
 
     const getInterviewStats = () => {
         getInterviewStatsAPI()
@@ -93,7 +93,26 @@ const Dashboard = () => {
           });
       };
 
-
+      const getGraphData = () => {
+        getGraphDataAPI().then(res=>{
+            const data = res?.data?.data;
+            const copyGraphData  = JSON.parse(JSON.stringify(graphData));
+            const arr = [];
+            data?.map(item=>{
+              arr.push(item.count);
+            })
+            copyGraphData.datasets[0].data = arr;
+            setGraphData(copyGraphData);
+        }).catch(error=>{
+          toast.error(
+            error?.data?.message || error?.data?.toString() || error?.toString(),
+            {
+              position: "top-right",
+            }
+          );
+        })
+      }
+      console.log("===============graphData",graphData)
       useEffect(()=>{
           if(interviewStats && interviewStats?.length > 0)
           {
@@ -108,6 +127,7 @@ const Dashboard = () => {
       },[interviewStats])
       useEffect(() => {
           getInterviewStats();
+          getGraphData();
       }, []);
 
     return <Box className="dashboard-main-container">
@@ -129,7 +149,7 @@ const Dashboard = () => {
                     
                 </Box>
                 <Box className="chart-main">
-                    <Line data={chartData} />
+                    <Line data={graphData} />
                 </Box>
             </Box>
     </Box>

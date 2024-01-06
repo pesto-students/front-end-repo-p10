@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import "./TopHeader.scss";
 const TopHeader = ({header}) => {
     return (

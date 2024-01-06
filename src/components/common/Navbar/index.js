@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import "./Navbar.scss";
 import { NAVBAR_ITEM_LIST } from "../../constant/Navbar";
 import { useEffect, useState } from "react";

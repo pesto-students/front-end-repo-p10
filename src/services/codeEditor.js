@@ -9,7 +9,7 @@ export const runCodeAPI = (payload={}) => {
 }
 
 export const getJobStatusAPI = (params={}) => {
-    return  axios.get("/status",{
+    return  axios.get("/code/status",{
         params:params,
     }).then(res=>{
           return res;

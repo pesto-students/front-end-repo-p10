@@ -1,0 +1,14 @@
+.test-editor-header {
+        position: fixed;
+        z-index: 100;
+        height: 70px;
+        width: 96%;
+        background: white;
+        display: flex;
+        align-items: center;
+        padding-left: 2%;
+        padding-right: 2%;
+        .logo-icon {
+            width: 200px;
+        }
+}
