@@ -6,7 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
-
+import BackArrowIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-terminal";
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -14,6 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import { getJobStatusAPI, runCodeAPI } from "../../../services/codeEditor";
 import { JOB_STATUS } from "../../constant/CodeEditor";
 import moment from "moment";
+import Header from "./Header";
+import { toast } from "react-toastify";
 
 const POLLING_INTERVAL = 1000;
 const resetJobInfo = () => {
@@ -24,8 +26,8 @@ const resetJobInfo = () => {
   };
 };
 
-const CodeEditor = () => {
-  const [code, setCode] = useState("");
+const CodeEditor = ({ editorData, testData, setTestData, toggleEditorStatus }) => {
+  const [code, setCode] = useState();
   const [jobInfo, setJobInfo] = useState(resetJobInfo());
   const timerRef = useRef();
 
@@ -38,6 +40,7 @@ const CodeEditor = () => {
       lang: "py",
       code: code,
     };
+    if (!code && code?.length === 0) return;
     setJobInfo(resetJobInfo());
     runCodeAPI(payload)
       .then((res) => {
@@ -49,7 +52,9 @@ const CodeEditor = () => {
         }));
       })
       .catch((error) => {
-        console.log("=========error", error);
+        toast.error(error?.data?.message || error?.toString(), {
+          position: "top-right",
+        });
       });
   };
 
@@ -64,7 +69,9 @@ const CodeEditor = () => {
         setJobInfo((prev) => ({ ...prev, status: status, data: data }));
       })
       .catch((error) => {
-        console.log("=========error", error);
+        toast.error(error?.data?.message || error?.toString(), {
+          position: "top-right",
+        });
       });
   };
   const startPolling = () => {
@@ -73,6 +80,18 @@ const CodeEditor = () => {
   const stopPolling = () => {
     clearInterval(timerRef.current);
   };
+
+
+
+  useEffect(()=>{
+    if(code)
+    {
+      const copyTestData = {...testData};
+      copyTestData.interview.questions[editorData.index || 0].response = code; 
+      setTestData(copyTestData);
+    }
+  },[code])
+
   useEffect(() => {
     if (
       jobInfo?.id &&
@@ -90,6 +109,10 @@ const CodeEditor = () => {
     }
     return () => clearInterval(timerRef?.current);
   }, [jobInfo]);
+
+  useEffect(()=>{
+    setCode(testData.interview.questions[editorData.index || 0].response || "");
+  },[])
 
   const renderStatus = () => {
     const getCss = () => {
@@ -160,20 +183,25 @@ const CodeEditor = () => {
       </Box>
     );
   };
-  const topHeader = () => {
-    return (
-      <Box className="top-header-container">
-        <Box>
-          <img src="/images/SMART_HIRE_ICON.svg" />
-        </Box>
-      </Box>
-    );
-  };
+
   const sideBar = () => {
-    return <Box className="side-bar-container"></Box>;
+    return <Box className="side-bar-container">
+              <Box onClick={toggleEditorStatus} className="back-box">
+                <BackArrowIcon className="back-icon"/>
+              </Box>
+    </Box>;
   };
   const questionBox = () => {
-    return <Box className="question-box-container"></Box>;
+    return (
+      <Box className="question-box-container">
+        <Typography className="ques-title">
+          {editorData?.data?.title}
+        </Typography>
+        <Typography className="ques-desc">
+          {editorData?.data?.description}
+        </Typography>
+      </Box>
+    );
   };
   const renderOutputBox = () => {
     return <Box className="output-box-container">{renderStatus()}</Box>;
@@ -183,7 +211,7 @@ const CodeEditor = () => {
       <Box className="code-box-container">
         <Box className="menu-bar">
           <Box>
-            <select className="select-main">
+            <select className="select-main" value="python">
               <option value="">Select Language</option>
               <option value="python">python</option>
             </select>
@@ -202,7 +230,7 @@ const CodeEditor = () => {
             mode="python"
             theme="terminal"
             name="text-editor-id"
-            // onLoad={this.onLoad}
+            value={code}
             onChange={handleCodeChange}
             fontSize={16}
             showPrintMargin={true}
@@ -220,11 +248,9 @@ const CodeEditor = () => {
         </Box>
         <Box className="result-box">
           <Box className="tab-main">
-            <Typography className="text">Input</Typography>
             <Typography className="text selected">Output</Typography>
-            <Typography className="text">Test cases</Typography>
           </Box>
-          <Box height="75%" padding="8px 12px">
+          <Box height="75%" padding="8px 12px" overflow="auto">
             {renderOutputBox()}
           </Box>
         </Box>
@@ -240,12 +266,7 @@ const CodeEditor = () => {
       </Box>
     );
   };
-  return (
-    <Box className="code-editor-main-container">
-      {topHeader()}
-      {contentBox()}
-    </Box>
-  );
+  return <Box className="code-editor-main-container">{contentBox()}</Box>;
 };
 
 export default CodeEditor;

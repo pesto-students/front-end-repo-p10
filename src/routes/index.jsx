@@ -24,7 +24,12 @@ const Profile = lazy(() => import("../components/pages/Profile/Profile"));
 const CodeEditor = lazy(() =>
   import("../components/pages/CodeEditor/CodeEditor")
 );
-
+const TestQuestionList = lazy(() =>
+  import("../components/pages/CodeEditor/TestQuestionList")
+);
+const Evaluate = lazy(() =>
+import("../components/pages/Evaluate/Evaluate")
+);
 const RouteContainer = ({ isAuthenticated }) => {
   return (
     <Suspense fallback={<Loader />}>
@@ -47,7 +52,10 @@ const RouteContainer = ({ isAuthenticated }) => {
           <Route path="/clients/add" element={<ClientAdd />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/code-editor" element={<CodeEditor />} />
+          <Route path="/evaluate/:uuid?" element={<Evaluate />} />
         </Route>
+
+        <Route path="/code-editor/:uuid?" element={<TestQuestionList />} />
         <Route
         path="*"
         element={<Navigate to="/dashboard" replace />}

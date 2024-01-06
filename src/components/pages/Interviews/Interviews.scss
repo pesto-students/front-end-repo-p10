@@ -58,6 +58,14 @@
         }
 
     }
+    .action-box {
+        display: flex;
+        gap:8px;
+        .icon {
+            cursor: pointer;
+            color: #261958;
+        }
+    }
     .table-main {
         width: 100%;
         border-collapse: collapse;

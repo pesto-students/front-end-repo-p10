@@ -13,6 +13,7 @@ import moment from "moment";
 import AddIcon from '@mui/icons-material/Add';
 import { addQuestionAPI } from "../../../services/question";
 import { getAllClientsAPI } from "../../../services/client";
+import { useNavigate } from "react-router-dom";
 
 const { ADD_QUESTION } = HEADERS;
 const AddQuestion = () => {
@@ -23,6 +24,7 @@ const AddQuestion = () => {
   }]);
   const [isSuperAdmin,setSuperIsAdmin] = useState(false);
   const [clientData,setClientData] = useState();
+  const navigate = useNavigate();
   const handleInputChage = (name, e) => {
     const { value } = e?.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -32,11 +34,12 @@ const AddQuestion = () => {
 
 
   const handleSubmit = () => {
-
-    const { companyID, title, description, images, solution, code, type, topic, link, testCases } = formData;
+    const clientData = JSON.parse(localStorage.getItem("clientData"));
+    const companyID = clientData?.companyID;
+    const { title, description, images, solution, code, type, topic, link, testCases } = formData;
 
     const payload = {
-        companyID: companyID,
+        companyID: companyID || formData?.companyID || null,
         title: title || null,
         description: description || null,
         images: images || [],
@@ -51,8 +54,11 @@ const AddQuestion = () => {
       .then((res) => {
         const data = res?.data;
         toast.success(data?.message,{
-            position: "top-right"
+          position: "top-right"
         })
+        navigate("/questions",{
+          replace: true,
+        });
       })
       .catch((error) => {
         toast.error(error?.data?.message || error?.toString(), {
@@ -105,21 +111,25 @@ const AddQuestion = () => {
       <Navbar />
       <TopHeader header={ADD_QUESTION} />
       <Box className="wrapper">
-      <Box className="form-container">
-          <Typography className="heading">Client Details</Typography>
-          <Box className="form-input">
-            <Typography className="label">Client</Typography>
-            <Select size="small" placeholder="select client" onChange={(e)=>handleInputChage("companyID",e)} className="select">
-                {
-                   clientData?.data && clientData?.data?.map(client=>{
-                        return (
-                            <MenuItem value={client?.companyID?._id}>{client?.companyID?.name}</MenuItem>
-                        )
-                    })
-                }
-            </Select>
-          </Box>
-      </Box>    
+        {
+          isSuperAdmin ? 
+          <Box className="form-container">
+              <Typography className="heading">Client Details</Typography>
+              <Box className="form-input">
+                <Typography className="label">Client</Typography>
+                <Select size="small" placeholder="select client" onChange={(e)=>handleInputChage("companyID",e)} className="select">
+                    {
+                      clientData?.data && clientData?.data?.map(client=>{
+                            return (
+                                <MenuItem value={client?.companyID?._id}>{client?.companyID?.name}</MenuItem>
+                            )
+                        })
+                    }
+                </Select>
+              </Box>
+          </Box>    
+          :null
+        }
         <Box className="form-container">
           <Typography className="heading">Question Details</Typography>
           <Box className="form-input">

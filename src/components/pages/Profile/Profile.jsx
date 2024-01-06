@@ -154,6 +154,7 @@ const Profile = () => {
                 fullWidth
                 placeholder=""
                 value={clientData?.email}
+                disabled
               />
             </Box>
 

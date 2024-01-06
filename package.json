@@ -31,7 +31,7 @@
   },
   "scripts": {
     "start": "REACT_APP_STAGE=local PORT=3006 react-scripts start",
-    "start:prod": "REACT_APP_STAGE=prod PORT=3006 react-scripts start",
+    "start:prod": "REACT_APP_STAGE=prod react-scripts start",
     "build": "REACT_APP_STAGE=local react-scripts build",
     "build:prod": "REACT_APP_STAGE=prod react-scripts build",
     "test": "react-scripts test",

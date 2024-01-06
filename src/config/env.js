@@ -6,7 +6,7 @@ const config = {
     },
     prod: {
         api: {
-            baseUrl: "https://api.smarthire.com/api",
+            baseUrl: "https://smart-hire-api.onrender.com/api",
         }
     }
 };

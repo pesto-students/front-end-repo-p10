@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "@material-ui/core";
+import { Tab, Tabs } from "@mui/material";
 import "./Interviews.scss";
 import TopHeader from "../../common/TopHeader";
 import { HEADERS } from "../../constant/Header";
@@ -123,7 +123,7 @@ const InterviewsList = () => {
                   className={`tab ${selectedTab === key ? "selected" : ""}`}
                   value={key}
                   label={
-                    <Box display="flex" alignItems="center" gap="4px">
+                    <Box display="flex" alignItems="center" gap="12px">
                       <Typography
                         className={`label ${
                           selectedTab === key ? "selected-label" : ""

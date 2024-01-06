@@ -44,7 +44,7 @@ const Login = ({isAuthenticated}) => {
             localStorage.setItem("clientData",JSON.stringify(data));
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             isAuthenticated.current = true;
-            navigate("/dashboard");
+            window.location.href = "/dashboard";
         }).catch(error=>{
             toast.error(error?.data?.message || error?.toString(),{
                 position: "top-right"
