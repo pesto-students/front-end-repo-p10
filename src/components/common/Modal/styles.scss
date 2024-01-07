@@ -1,0 +1,30 @@
+.common-shared-modal
+{
+    height: 100%;
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .main-container
+    {
+        height: fit-content;
+        min-width: 200px;
+        background: white;
+        font-family: 'Poppins';
+        color: #3D3D3D;
+        border-radius: 14px;
+        .title-box
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 26px;
+        }
+        .body-box
+        {
+            padding: 22px 26px;
+        }
+    }
+}

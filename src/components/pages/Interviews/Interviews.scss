@@ -1,0 +1,128 @@
+.inteview-list-main-container {
+    width: auto;
+    margin-left: 283px;
+    padding-left: 26px;
+    padding-right: 26px;
+    font-family: 'Poppins';
+    .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+    .tabs {
+        background: #261958;
+        border-radius: 8px;
+        padding: 4px 8px;
+        align-items: center;
+        .label {
+            font-size: 15px;
+            font-weight: 400;
+            color: white;
+            line-height: normal;
+        }
+        .selected-label {
+            color: #261958;
+        }
+        .count {
+            line-height: normal;
+            border-radius: 2px;
+            background: #BCB5D5;
+            color: #261958;
+            font-family: "Poppins";
+            font-size: 12px;
+            font-weight: 700;
+            min-height: 15px;
+            min-width: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .selected-count {
+            color: white;
+            background: #261958;
+        }
+        .tab {
+            min-height: 28px;
+            text-transform: capitalize;
+            color: white;
+            border-radius: 8px;
+        }
+        .selected {
+            background: white;
+            border-bottom: none;
+            color: #261958;
+        }
+        .MuiTabs-indicator {
+            background-color: transparent;
+        }
+
+    }
+    .action-box {
+        display: flex;
+        gap:8px;
+        .icon {
+            cursor: pointer;
+            color: #261958;
+        }
+    }
+    .table-main {
+        width: 100%;
+        border-collapse: collapse;
+        // border:  1px solid #E6E6E6;
+    }
+    th,td {
+        background: white;
+    }
+    th {
+        padding: 22px 16px 16px 16px;
+        border-bottom:  1px solid #E6E6E6;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 600;
+        color: #261958;
+    }
+    th:first-child {
+        border-top-left-radius: 12px;
+    }
+    th:last-child{
+        border-top-right-radius: 12px;
+    } 
+    td {
+        padding: 16px;
+    }
+    tr:nth-child(2n) td{
+        background: #2619580f;
+    }
+    tr:nth-child(2n) td:first-child {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+    tr:nth-child(2n) td:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+    .table-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:32px;
+
+    }
+    .add-interview-btn {
+        font-family: 'Poppins';
+        border-radius: 8px;
+        border: 2px solid #261958;
+        background: #FFF;
+        font-size: 16px;
+        font-weight: 500;
+        color: #261958;
+        text-transform: capitalize;
+        padding: 8px 12px;
+    }
+    .add-interview-btn:hover {
+        background: #FFF;
+        border: 2px solid #261958;
+        color: #261958;
+    }
+}
