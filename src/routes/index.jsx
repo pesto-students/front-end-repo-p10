@@ -39,7 +39,7 @@ const RouteContainer = ({ isAuthenticated }) => {
           element={<Login isAuthenticated={isAuthenticated} />}
         />
         <Route
-          path="/admin"
+          path="/super-login"
           element={<SuperAdmin isAuthenticated={isAuthenticated} />}
         />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
